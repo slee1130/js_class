@@ -6,21 +6,20 @@ export default class Component {
   constructor($target, $props) {
     this.$target = $target;
     this.$props = $props;
+    this.$render = this.render.bind(this);
     this.setup();
     this.setEvent();
     this.render();
-    this.mounted(); //loading to the webpage
   }
 
-  update() {}
   setup() {}
   mounted() {}
   template() {
     return "";
   }
   render() {
-    this.update();
     this.$target.innerHTML = this.template();
+    this.mounted();
   }
   setEvent() {}
   setState(newState) {

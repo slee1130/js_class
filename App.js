@@ -53,11 +53,15 @@ export default class App extends Component {
       addItem: addItem.bind(this),
     });
 
-    new Items($items, {
-      filteredItems,
-      toggleItem: toggleItem.bind(this),
-      deleteItem: deleteItem.bind(this),
-    });
+    if (!this.itemsComponent) {
+      this.itemsComponent = new Items($items, {
+        filteredItems,
+        toggleItem: toggleItem.bind(this),
+        deleteItem: deleteItem.bind(this),
+      });
+    } else {
+      this.itemsComponent.$render();
+    }
 
     new ItemFilter($itemFilter, {
       filterItem: filterItem.bind(this),
