@@ -3,7 +3,6 @@ import Component from "../core/Component.js";
 export default class Items extends Component {
   setup() {
     this.$state = {
-      // count: this.$state || 0,
       count: 0,
     };
   }
