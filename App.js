@@ -53,11 +53,20 @@ export default class App extends Component {
       addItem: addItem.bind(this),
     });
 
-    new Items($items, {
-      filteredItems,
-      toggleItem: toggleItem.bind(this),
-      deleteItem: deleteItem.bind(this),
-    });
+    if (this.$components.items) {
+      this.$components.items.$target = $items;
+      this.$components.items.$props = {
+        filteredItems,
+        toggleItem: toggleItem.bind(this),
+        deleteItem: deleteItem.bind(this),
+      };
+    } else {
+      this.$components.items = new Items($items, {
+        filteredItems,
+        toggleItem: toggleItem.bind(this),
+        deleteItem: deleteItem.bind(this),
+      });
+    }
 
     new ItemFilter($itemFilter, {
       filterItem: filterItem.bind(this),

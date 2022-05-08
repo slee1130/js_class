@@ -1,15 +1,23 @@
 export default class Component {
   $target;
-  $props;
   $state;
+  $components = {};
+
+  get $props() {
+    return this._props;
+  }
+
+  set $props(value) {
+    this._props = value;
+    this.render();
+    this.setEvent();
+  }
 
   constructor($target, $props) {
+    this.setup();
     this.$target = $target;
     this.$props = $props;
-    this.$render = this.render.bind(this);
-    this.setup();
-    this.setEvent();
-    this.render();
+    this.mounted();
   }
 
   setup() {}
