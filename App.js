@@ -55,6 +55,7 @@ export default class App extends Component {
 
     if (this.$components.items) {
       this.$components.items.$target = $items;
+      // console.log("이게뭘까요", this.$components);
       this.$components.items.$props = {
         filteredItems,
         toggleItem: toggleItem.bind(this),
@@ -89,14 +90,29 @@ export default class App extends Component {
     this.setState({ items });
   }
 
-  deleteItem(seq) {
-    const items = [...this.$state.items];
-    items.splice(
-      items.findIndex((n) => n.seq === seq),
-      1
-    );
-    this.setState({ items });
+  deleteItem() {
+    // const items = [...this.$state.items];
+    // items.splice(
+    //   items.findIndex((n) => n.seq === seq),
+    //   1
+    // );
+    // this.setState({ items });
+    this.showModal();
   }
+
+  showModal = async (seq) => {
+    const confirmed = await window.confirm(
+      "are you sure do you want to delete?"
+    );
+    const items = [...this.$state.items];
+    if (confirmed) {
+      items.splice(
+        items.findIndex((item) => item.seq === seq),
+        1
+      );
+    }
+    return this.setState({ items });
+  };
 
   get filteredItems() {
     const { items, isFilter } = this.$state;

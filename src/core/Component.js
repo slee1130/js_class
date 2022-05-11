@@ -3,6 +3,7 @@ export default class Component {
   $state;
   $components = {};
 
+  //이 부분 질문하기
   get $props() {
     return this._props;
   }
