@@ -1,7 +1,8 @@
 export default class Component {
   $target;
-  $state;
+  $state = {};
   $components = {};
+  _props;
 
   //이 부분 질문하기
   get $props() {

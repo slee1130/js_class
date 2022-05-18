@@ -90,28 +90,20 @@ export default class App extends Component {
     this.setState({ items });
   }
 
-  deleteItem() {
-    // const items = [...this.$state.items];
-    // items.splice(
-    //   items.findIndex((n) => n.seq === seq),
-    //   1
-    // );
-    // this.setState({ items });
-    this.showModal();
-  }
-
-  showModal = async (seq) => {
-    const confirmed = await window.confirm(
-      "are you sure do you want to delete?"
-    );
-    const items = [...this.$state.items];
-    if (confirmed) {
+  deleteItem(seq) {
+    const result = this.showModal("are you sure do you want to delete?");
+    if (result) {
+      const items = [...this.$state.items];
       items.splice(
-        items.findIndex((item) => item.seq === seq),
+        items.findIndex((n) => n.seq === seq),
         1
       );
+      this.setState({ items });
     }
-    return this.setState({ items });
+  }
+
+  showModal = (message) => {
+    return window.confirm(message);
   };
 
   get filteredItems() {

@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="modal.css">
+
 </head>
+
 <body>
     <div id="app"></div>
+    <button id="openModal">모달 열기</button>
+    <div id="modal">
+        <p class="modal__message"></p>
+        <button class="modal__cancel">cancel</button>
+        <button class="modal__ok">ok</button>
+    </div>
+
     <script src="./main.js" type="module"></script>
+    <script src="./modal.js"></script>
 </body>
+
 </html>
